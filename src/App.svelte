@@ -29,7 +29,7 @@
   
 </script>
 
-<body>
+<main>
 {#await fetchAuthors}
   <p>loading...</p>
 {:then authors}
@@ -43,4 +43,4 @@
   <p>{error.message}</p>
 {/await}
 
-</body>
+</main>
