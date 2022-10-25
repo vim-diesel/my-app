@@ -2,6 +2,7 @@
 
 - npm i url
 - npm i @portabletext/svelte -D
+- npm i @sanity/image-url
 
 ## Svelte + Vite
 

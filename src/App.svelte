@@ -1,6 +1,6 @@
 <script>
   import sanityClient from "@sanity/client";
-  import { PortableText } from "@portabletext/svelte";
+  //import { PortableText } from "@portabletext/svelte";
 
   const client = sanityClient({
     projectId: "w8m31798",
@@ -9,34 +9,18 @@
     apiVersion: "2021-10-21",
   });
 
-  const fetchAuthors = (async() => {
-    const response = await client.fetch('*[_type == "author"]');
-    if (response) {
-      return {
-        status: 200,
-        body: {
-          authors: response,
-        },
-      };
-    }
-    return {
-      status: 500,
-      body: new Error("Internal Server Error"),
-    };
-  })()
-
-  console.log(fetchAuthors)
+  const fetchAuthors = client.fetch('*[_type == "post"]');
   
 </script>
 
 <main>
 {#await fetchAuthors}
   <p>loading...</p>
-{:then authors}
+{:then postList}
   <ul>
-    {#each authors.body.authors as author}
-      <li>{author.name}</li>
-      <PortableText value={author.bio} />
+    {#each postList as post}
+      <li>{post.name}</li>
+      <!-- <PortableText value={author.bio} /> -->
     {/each}
   </ul>
 {:catch error}
